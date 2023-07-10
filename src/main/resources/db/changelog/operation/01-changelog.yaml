@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1667467703138
+      author: Sergey Korotaev
+      changes:
+        - createTable:
+            tableName: thing
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: flag
+                  type: boolean
+              - column:
+                  name: version
+                  type: integer
+                  value: 0
+              - column:
+                  name: created_at
+                  valueComputed: 'now()'
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  valueComputed: 'now()'
+                  type: timestamp
