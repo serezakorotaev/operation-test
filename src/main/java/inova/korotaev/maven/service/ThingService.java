@@ -38,7 +38,7 @@ public class ThingService {
     }
 
     public List<ThingDto> findByRequest(SearchParamShell searchParamShell) {
-        PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getSearchParams(), SORTED_FIELDS);
+        PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getPageAttribute(), SORTED_FIELDS);
         Specification<Thing> specification = operationService.buildRequestByFilters(searchParamShell.getSearchParams());
         Page<Thing> things = thingRepository.findAll(specification, pageRequestWithOffset);
         return thingMapper.toThingDtoList(things.getContent());
