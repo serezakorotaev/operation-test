@@ -2,9 +2,10 @@ package inova.korotaev.maven.service;
 
 import inova.korotaev.maven.dto.ThingDto;
 import inova.korotaev.maven.mapper.ThingMapper;
-import inova.korotaev.maven.model.SearchParamShell;
 import inova.korotaev.maven.model.Thing;
 import inova.korotaev.maven.model.paging.PageRequestWithOffset;
+import inova.korotaev.maven.model.shell.CommonOperationShell;
+import inova.korotaev.maven.model.shell.MultipleOperationShell;
 import inova.korotaev.maven.operation.OperationService;
 import inova.korotaev.maven.repository.ThingRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,9 +38,16 @@ public class ThingService {
         return thingMapper.toThingDto(thing);
     }
 
-    public List<ThingDto> findByRequest(SearchParamShell searchParamShell) {
+    public List<ThingDto> findByBaseRequest(CommonOperationShell searchParamShell) {
         PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getPageAttribute(), SORTED_FIELDS);
-        Specification<Thing> specification = operationService.buildRequestByFilters(searchParamShell.getSearchParams());
+        Specification<Thing> specification = operationService.buildBaseSpecificationByParams(searchParamShell.getBaseSearchParams(), searchParamShell.getGlue());
+        Page<Thing> things = thingRepository.findAll(specification, pageRequestWithOffset);
+        return thingMapper.toThingDtoList(things.getContent());
+    }
+
+    public List<ThingDto> findByComplexRequest(MultipleOperationShell searchParamShell) {
+        PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getPageAttribute(), SORTED_FIELDS);
+        Specification<Thing> specification = operationService.buildComplexSpecificationByParams(searchParamShell.getSearch(), searchParamShell.getExternalGlue());
         Page<Thing> things = thingRepository.findAll(specification, pageRequestWithOffset);
         return thingMapper.toThingDtoList(things.getContent());
     }

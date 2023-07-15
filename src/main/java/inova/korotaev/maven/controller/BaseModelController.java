@@ -1,7 +1,8 @@
 package inova.korotaev.maven.controller;
 
 import inova.korotaev.maven.dto.ThingDto;
-import inova.korotaev.maven.model.SearchParamShell;
+import inova.korotaev.maven.model.shell.CommonOperationShell;
+import inova.korotaev.maven.model.shell.MultipleOperationShell;
 import inova.korotaev.maven.service.ThingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,12 @@ public class BaseModelController {
     }
 
     @GetMapping("/search")
-    public List<ThingDto> searchByRequest(@RequestBody SearchParamShell searchParamShell) {
-        return thingService.findByRequest(searchParamShell);
+    public List<ThingDto> searchByRequest(@RequestBody CommonOperationShell searchParamShell) {
+        return thingService.findByBaseRequest(searchParamShell);
+    }
+
+    @GetMapping("/complex-search")
+    public List<ThingDto> searchByRequest(@RequestBody MultipleOperationShell searchParamShell) {
+        return thingService.findByComplexRequest(searchParamShell);
     }
 }
