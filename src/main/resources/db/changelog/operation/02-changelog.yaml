@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1667467703199
+      author: Sergey Korotaev
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: outboxPK
+                  name: id
+                  type: UUID
+              - column:
+                  name: value
+                  type: JSONB
+            tableName: jsonb_entity
