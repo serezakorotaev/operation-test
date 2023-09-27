@@ -3,15 +3,16 @@ package inova.korotaev.maven.service;
 import inova.korotaev.maven.dto.JsonDto;
 import inova.korotaev.maven.mapper.JsonMapper;
 import inova.korotaev.maven.model.JsonBEntity;
-import inova.korotaev.maven.model.paging.PageRequestWithOffset;
-import inova.korotaev.maven.model.shell.CommonOperationShell;
-import inova.korotaev.maven.model.shell.MultipleOperationShell;
-import inova.korotaev.maven.operation.OperationService;
 import inova.korotaev.maven.repository.JsonBRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.sergkorot.dynamic.model.paging.PageRequestWithOffset;
+import ru.sergkorot.dynamic.model.shell.CommonOperationShell;
+import ru.sergkorot.dynamic.model.shell.MultipleOperationShell;
+import ru.sergkorot.dynamic.operation.OperationService;
+import ru.sergkorot.dynamic.operation.SpecificationOperationProviderImpl;
 
 import java.util.List;
 
@@ -37,5 +38,10 @@ public class JsonBService {
         Specification<JsonBEntity> specification = operationService.buildComplexSpecificationByParams(searchParamShell.getSearch(), searchParamShell.getExternalGlue());
         Page<JsonBEntity> jsonBEntities = jsonBRepository.findAll(specification, pageRequestWithOffset);
         return jsonMapper.toJsonDtos(jsonBEntities.getContent());
+    }
+
+    public JsonDto save(JsonDto jsonDto) {
+        JsonBEntity bEntity = jsonMapper.toJsonBEntity(jsonDto);
+        return jsonMapper.toJsonDto(jsonBRepository.save(bEntity));
     }
 }

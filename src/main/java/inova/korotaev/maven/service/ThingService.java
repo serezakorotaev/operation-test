@@ -3,17 +3,17 @@ package inova.korotaev.maven.service;
 import inova.korotaev.maven.dto.ThingDto;
 import inova.korotaev.maven.mapper.ThingMapper;
 import inova.korotaev.maven.model.Thing;
-import inova.korotaev.maven.model.paging.PageRequestWithOffset;
-import inova.korotaev.maven.model.shell.CommonOperationShell;
-import inova.korotaev.maven.model.shell.MultipleOperationShell;
-import inova.korotaev.maven.operation.OperationService;
 import inova.korotaev.maven.repository.ThingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.sergkorot.dynamic.model.paging.PageRequestWithOffset;
+import ru.sergkorot.dynamic.model.shell.CommonOperationShell;
+import ru.sergkorot.dynamic.model.shell.MultipleOperationShell;
+import ru.sergkorot.dynamic.operation.OperationService;
 
-import javax.persistence.EntityExistsException;
+import jakarta.persistence.EntityExistsException;
 import java.util.List;
 import java.util.UUID;
 

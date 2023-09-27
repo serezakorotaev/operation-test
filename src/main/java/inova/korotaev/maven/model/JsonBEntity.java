@@ -7,13 +7,10 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -22,14 +19,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class JsonBEntity {
+
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "uuid2")
+    @UuidGenerator
     private UUID id;
 
-    @Type(type = "jsonb")
+    @Type(JsonBinaryType.class)
     @Column(name = "value", columnDefinition = "jsonb")
     private Object value;
 

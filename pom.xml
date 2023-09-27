@@ -7,8 +7,9 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.1.4</version>
         <relativePath/>
+        <!-- lookup parent from repository -->
     </parent>
 
     <groupId>inova.korotaev.maven</groupId>
@@ -19,8 +20,22 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -58,9 +73,9 @@
         </dependency>
 
         <dependency>
-            <groupId>inovat.korotaev.org</groupId>
+            <groupId>ru.sergkorot.dynamic</groupId>
             <artifactId>spring-boot-operation-starter</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -68,8 +83,8 @@
         </dependency>
         <dependency>
             <groupId>com.vladmihalcea</groupId>
-            <artifactId>hibernate-types-55</artifactId>
-            <version>2.20.0</version>
+            <artifactId>hibernate-types-60</artifactId>
+            <version>2.21.1</version>
         </dependency>
     </dependencies>
 
