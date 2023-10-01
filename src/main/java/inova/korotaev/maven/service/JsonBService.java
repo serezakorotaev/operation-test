@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 import ru.sergkorot.dynamic.model.paging.PageRequestWithOffset;
 import ru.sergkorot.dynamic.model.shell.CommonOperationShell;
 import ru.sergkorot.dynamic.model.shell.MultipleOperationShell;
-import ru.sergkorot.dynamic.operation.OperationService;
-import ru.sergkorot.dynamic.operation.SpecificationOperationProviderImpl;
+import ru.sergkorot.dynamic.operation.specification.SpecificationOperationService;
 
 import java.util.List;
 
@@ -22,20 +21,20 @@ public class JsonBService {
 
     private final JsonBRepository jsonBRepository;
     private final JsonMapper jsonMapper;
-    private final OperationService<JsonBEntity> operationService;
+    private final SpecificationOperationService<JsonBEntity> operationService;
 
     private final static List<String> SORTED_FIELDS = List.of("id", "value");
 
     public List<JsonDto> findByBaseRequest(CommonOperationShell searchParamShell) {
         PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getPageAttribute(), SORTED_FIELDS);
-        Specification<JsonBEntity> specification = operationService.buildBaseSpecificationByParams(searchParamShell.getBaseSearchParams(), searchParamShell.getGlue());
+        Specification<JsonBEntity> specification = operationService.buildBaseByParams(searchParamShell.getBaseSearchParams(), searchParamShell.getGlue());
         Page<JsonBEntity> jsonBEntities = jsonBRepository.findAll(specification, pageRequestWithOffset);
         return jsonMapper.toJsonDtos(jsonBEntities.getContent());
     }
 
     public List<JsonDto> findByComplexRequest(MultipleOperationShell searchParamShell) {
         PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getPageAttribute(), SORTED_FIELDS);
-        Specification<JsonBEntity> specification = operationService.buildComplexSpecificationByParams(searchParamShell.getSearch(), searchParamShell.getExternalGlue());
+        Specification<JsonBEntity> specification = operationService.buildComplexByParams(searchParamShell.getSearch(), searchParamShell.getExternalGlue());
         Page<JsonBEntity> jsonBEntities = jsonBRepository.findAll(specification, pageRequestWithOffset);
         return jsonMapper.toJsonDtos(jsonBEntities.getContent());
     }

@@ -22,8 +22,13 @@ spring:
     hibernate:
       ddl-auto: validate
 
+
   liquibase:
     change-log: classpath:/db/changelog/init.yaml
     enabled: true
     default-schema: public
     liquibase-schema: public
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/operation
