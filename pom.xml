@@ -34,6 +34,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>ru.sergkorot.dynamic</groupId>
+                <artifactId>operation-bom</artifactId>
+                <version>1.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -75,7 +82,12 @@
         <dependency>
             <groupId>ru.sergkorot.dynamic</groupId>
             <artifactId>spring-boot-operation-starter</artifactId>
-            <version>1.0.2</version>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.sergkorot.dynamic</groupId>
+            <artifactId>spring-boot-operation-mongodb-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>

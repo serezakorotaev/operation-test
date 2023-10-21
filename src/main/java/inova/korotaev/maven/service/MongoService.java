@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import ru.sergkorot.dynamic.model.shell.CommonOperationShell;
 import ru.sergkorot.dynamic.model.shell.MultipleOperationShell;
-import ru.sergkorot.dynamic.operation.query.CriteriaOperationService;
+import ru.sergkorot.dynamic.operation.CriteriaOperationService;
 
 import java.util.List;
 

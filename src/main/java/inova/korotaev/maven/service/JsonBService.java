@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import ru.sergkorot.dynamic.model.paging.PageRequestWithOffset;
 import ru.sergkorot.dynamic.model.shell.CommonOperationShell;
 import ru.sergkorot.dynamic.model.shell.MultipleOperationShell;
-import ru.sergkorot.dynamic.operation.specification.SpecificationOperationService;
+import ru.sergkorot.dynamic.operation.SpecificationOperationService;
 
 import java.util.List;
 
