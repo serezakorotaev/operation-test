@@ -23,7 +23,7 @@ public class JsonBService {
     private final JsonMapper jsonMapper;
     private final SpecificationOperationService<JsonBEntity> operationService;
 
-    private final static List<String> SORTED_FIELDS = List.of("id", "value");
+    private static final List<String> SORTED_FIELDS = List.of("id", "value");
 
     public List<JsonDto> findByBaseRequest(CommonOperationShell searchParamShell) {
         PageRequestWithOffset pageRequestWithOffset = operationService.buildPageSettings(searchParamShell.getPageAttribute(), SORTED_FIELDS);

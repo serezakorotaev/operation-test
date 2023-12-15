@@ -82,12 +82,12 @@
         <dependency>
             <groupId>ru.sergkorot.dynamic</groupId>
             <artifactId>spring-boot-operation-starter</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>ru.sergkorot.dynamic</groupId>
             <artifactId>spring-boot-operation-mongodb-starter</artifactId>
-            <version>3.0.0</version>
+            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>

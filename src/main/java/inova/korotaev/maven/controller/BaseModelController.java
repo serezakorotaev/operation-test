@@ -3,12 +3,7 @@ package inova.korotaev.maven.controller;
 import inova.korotaev.maven.dto.ThingDto;
 import inova.korotaev.maven.service.ThingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.sergkorot.dynamic.model.shell.CommonOperationShell;
 import ru.sergkorot.dynamic.model.shell.MultipleOperationShell;
 
@@ -24,7 +19,7 @@ public class BaseModelController {
 
     @PostMapping("/create-random")
     public ThingDto createRandom(@RequestBody ThingDto thingDto) {
-            return thingService.save(thingDto);
+        return thingService.save(thingDto);
     }
 
     @GetMapping("/{id}")
@@ -40,5 +35,13 @@ public class BaseModelController {
     @GetMapping("/complex-search")
     public List<ThingDto> searchByRequest(@RequestBody MultipleOperationShell searchParamShell) {
         return thingService.findByComplexRequest(searchParamShell);
+    }
+
+    @GetMapping("/query")
+    public List<ThingDto> searchByRequest(@RequestParam String query,
+                                          @RequestParam Integer limit,
+                                          @RequestParam Integer offset,
+                                          @RequestParam String sortBy) {
+        return thingService.findByQuery(query, limit, offset, sortBy);
     }
 }
